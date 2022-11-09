@@ -15,6 +15,7 @@ function onOpen() {
     .addToUi();
 }
 
+//separate function for getting the rss feed, because I use this more than once
 function getFeed (url) {
 let feed = UrlFetchApp.fetch(url).getContentText();
   feed = XmlService.parse(feed);
@@ -41,6 +42,7 @@ function getAverage (url) {
   return average;
 }
 
+//below gets the date from the rss feed so I can later compare it to the latest date in the spreadsheet
 function checkDate (url) {
   let channel = getFeed(url);
   let date = channel.getChild("description").getValue();
@@ -125,6 +127,7 @@ function getFuel () {
     let e85Average = getAverage(`${rssFeed}${fuelTypes.e85}${metro}${urlDay}${day}`);
     Logger.log("E85: "+e85Average);
 
+    //putting all of the data into the spreadsheet
     addCellInfo("fuel-prices!B2", ulpAverage);
     addCellInfo("fuel-prices!C2", lpgAverage);
     addCellInfo("fuel-prices!D2", dieselAverage);
