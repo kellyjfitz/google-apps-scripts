@@ -50,7 +50,7 @@ function getNewBestie() {
   
   /* add info to cells */
   let urlCell = spreadsheet.getRange("hey-bestie-list!A2");
-  urlCell.setValue(newBestieUrl);
+   urlCell.setValue(newBestieUrl+"?utm_source=showcase&utm_campaign=visualisation/11679077");
 
   let imageCell = spreadsheet.getRange("hey-bestie-list!B2");
   imageCell.setValue(newBestieImage);
